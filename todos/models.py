@@ -1,10 +1,14 @@
 from django.db import models
 
 class Todo(models.Model):
-    title = models.CharField(max_length=100)
-    created_at = models.DateTimeField('Created', auto_now_add=True)
-    update_at = models.DateTimeField('Updated', auto_now=True)
-    isCompleted = models.BooleanField(default=False)
-
+    # Add this line as the first field in your model
+    id = models.BigAutoField(primary_key=True)
+    
+    # Your existing fields below (keep them as they are)
+    title = models.CharField(max_length=200)
+    description = models.TextField(blank=True)
+    completed = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    
     def __str__(self):
         return self.title
